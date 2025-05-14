@@ -1,0 +1,79 @@
+﻿@model IEnumerable<AgriEnergyConnect.Models.Product>
+
+@{
+<<<<<<< HEAD
+    ViewData["Title"] = "My Products";  // Set the page title
+}
+
+<h2>My Products</h2>
+
+@if (!Model.Any())  <!-- Check if there are no products -->
+{
+    <p class="text-muted">No products yet. <a asp-action="AddProduct" class="btn btn-sm btn-success">Add your first product</a></p>  <!-- Display message and link to add a product -->
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>  <!-- Column header for product name -->
+                <th>Category</th>  <!-- Column header for product category -->
+                <th>Production Date</th>  <!-- Column header for production date -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)  <!-- Iterate through the products -->
+            {
+                <tr>
+                    <td>@product.Name</td>  <!-- Display product name -->
+                    <td>@product.Category</td>  <!-- Display product category -->
+                    <td>@product.ProductionDate.ToShortDateString()</td>  <!-- Display product production date -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+=======
+    ViewData["Title"] = "Filtered Products"; // Set page title
+}
+
+<h2>Filtered Products</h2>
+
+<form asp-action="FilterProducts" method="get" class="form-inline mb-3">
+    <div class="form-group mr-2">
+        <label for="category" class="mr-2">Category:</label>
+        <input type="text" name="category" class="form-control" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="fromDate" class="mr-2">From:</label>
+        <input type="date" name="fromDate" class="form-control" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="toDate" class="mr-2">To:</label>
+        <input type="date" name="toDate" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Farmer</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Production Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model) // Loop through each product
+        {
+            <tr>
+                <td>@product.Farmer?.Name</td> // Display farmer name if available
+                <td>@product.Name</td>
+                <td>@product.Category</td>
+                <td>@product.ProductionDate.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+>>>>>>> a43950b (final commit)
